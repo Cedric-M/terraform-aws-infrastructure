@@ -44,7 +44,7 @@ Once you cloned the git repository, you need to create an AWS Access Key:
 
 >Get the keys from console.aws.amazon.com/iam > security credentials > Access Keys
 
-Add then add them to the `terraform.tfvars` file as follow:
+Add them to the `terraform.tfvars` file as follow:
 
 
 ```
@@ -59,9 +59,11 @@ Once your keys are setup, all you have to do is to use the following commands:
 ```
 terraform init                        #Initialize a Terraform working directory
 terraform apply                       #Builds or changes infrastructure
+```
 
-#Tips, to avoid writing manually "yes" each time you run terraform apply, use:
+> Tips, to avoid writing manually "yes" each time you run terraform apply, use:
 
+```
 terraform apply --auto-approve 
 ```
 
@@ -81,7 +83,7 @@ You can now access it from your favorite web browser at the address shown :
 
 ### Shutdown procedure
 
-In order to shut down the infrastructure we made, (also, not to use too much resource of your AWS Free Tier), you can run the following command once you're done:
+In order to shut down the infrastructure we made, (also, not to use too much resource of you are using AWS Free Tier), you can run the following command once you are done:
 
 ```
 terraform destroy --auto-approve      #Destroy Terraform-managed infrastructure
@@ -101,7 +103,7 @@ terraform state show <ressource_name> # Show details about a specific ressource
 #### Create an EC2 Key Pair
 
 
-> Remember to chose AZ (Availability Zone) first, in our case: us-east-1
+> Remember to choose AZ (Availability Zone) first, in our case: us-east-1
 
 This key is going to allow us to connect our server once we deploy it
 
@@ -112,7 +114,7 @@ This key is going to allow us to connect our server once we deploy it
 #### To access your instance:
 
 1. Open an terminal (if you are using windows, find out how to [connect using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console))
-2. Locate your private key file (aws-ec2-main-key.pem). The wizard automatically detects the key you used to launch the instance.
+2. Locate your private key file: `aws-ec2-main-key.pem`.
 3. Your key must not be publicly viewable for SSH to work. Use this command if needed:
  
 ```
@@ -125,9 +127,8 @@ This key is going to allow us to connect our server once we deploy it
 Example:
     
 ```
-    ssh -i "aws-ec2-main-key.pem" ubuntu@34.206.249.94
+ssh -i "aws-ec2-main-key.pem" ubuntu@34.206.249.94
 ```
-
 
 
 ## Built With
