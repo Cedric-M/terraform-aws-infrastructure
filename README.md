@@ -22,7 +22,6 @@ sudo mv terraform /usr/local/bin/
 ls /usr/local/bin/
 ```
 
-
 Check if Terraform is now successfully installed by running:
 
 ```
@@ -30,7 +29,6 @@ terraform --version
 # should return:
 # Terraform v0.13.3
 ```
-
 
 ## Deployment
 
@@ -47,7 +45,6 @@ Once you cloned the git repository, you need to create an AWS Access Key:
 >Get the keys from console.aws.amazon.com/iam > security credentials > Access Keys
 
 Add then add them to the `terraform.tfvars` file as follow:
-
 
 
 ```
@@ -68,6 +65,19 @@ terraform apply                       #Builds or changes infrastructure
 terraform apply --auto-approve 
 ```
 
+If the AWS infrastructure successfully build, you should see the following message in the terminal:
+
+> Apply complete! Resources: 9 added, 0 changed, 0 destroyed.
+>
+> Outputs:
+>
+> server_public_ip = 34.206.249.94
+
+note: the public IP address will automatically be generated at each deployment, so it may vary.
+
+You can now access it from your favorite web browser at the address shown :
+
+![image](https://user-images.githubusercontent.com/19567048/94994520-60ac3b00-0598-11eb-964c-9055b655d735.png)
 
 ### Shutdown procedure
 
@@ -77,7 +87,6 @@ In order to shut down the infrastructure we made, (also, not to use too much res
 terraform destroy --auto-approve      #Destroy Terraform-managed infrastructure
 ```
 
-
 ### Supervision procedure
 
 ```
@@ -86,6 +95,39 @@ terraform state list                  #Advanced state management: show all runni
 terraform state show <ressource_name> # Show details about a specific ressource
 
 ```
+
+### SSH procedure
+
+#### Create an EC2 Key Pair
+
+
+> Remember to chose AZ (Availability Zone) first, in our case: us-east-1
+
+This key is going to allow us to connect our server once we deploy it
+
+1. Go to `console.aws.amazon.com/ec2` > Networks & Security > Key Pairs
+2. Choose `.pem` file format, for instance, name it `aws-ec2-main-key` 
+
+
+#### To access your instance:
+
+1. Open an terminal (if you are using windows, find out how to [connect using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console))
+2. Locate your private key file (aws-ec2-main-key.pem). The wizard automatically detects the key you used to launch the instance.
+3. Your key must not be publicly viewable for SSH to work. Use this command if needed:
+ 
+```
+    chmod 400 aws-ec2-main-key.pem
+```
+
+4. Connect to your instance using its Elastic IP: `34.206.249.94`
+
+
+Example:
+    
+```
+    ssh -i "aws-ec2-main-key.pem" ubuntu@34.206.249.94
+```
+
 
 
 ## Built With
