@@ -1,6 +1,14 @@
-# terraform-aws-infrastructure
+# AWS infrastructure made using Terraform
 
-AWS infrastructure made using Terraform
+Terraform module containing the resources needed to automate the deployment of a web server on AWS. Including:
+ * [VPC (Virtual Private Cloud)](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) 
+ * [Internet Gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway)
+ * [Custom Route Table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table)
+ * [Subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet)
+ * [Security Group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)
+ * [Network interface](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_interface)
+ * [Elastic IP](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) assigned to the Network Interface
+ * [Ubuntu server](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) (including apache2)
 
 ## Getting Started
 
