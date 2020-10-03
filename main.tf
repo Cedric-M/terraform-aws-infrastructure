@@ -1,7 +1,7 @@
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
-  #Get the keys from console.aws.amazon.com/iam > security credentials > Access Keys
+  #Get the keys from console.aws.amazon.com/iam > security credentials > Access Keys. And put them in 'terraform.tfvars'
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
 }
@@ -15,12 +15,6 @@ variable "aws_secret_key" {
   description = "AWS Secret Key"
   type        = string
 }
-
-#In order to access your server through SSH later, please follow the step below :
-
-#Remember to chose AZ first, in our case: us-east-1
-#Create an EC2 Key Pair by going to console.aws.amazon.com/ec2 > Networks & Security > Key Pairs > Chose .pem file format, for instance, name it "aws-ec2-main-key" 
-#This key is going to allow us to connect our server once we deploy it
 
 # 1. Create VPC
 # Doc: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc
